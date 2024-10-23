@@ -2,6 +2,7 @@ package com.example.nit3213assessment2.ui
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,8 @@ class DashboardFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.entitiesState.collect { itemsInApiResponse ->
                     if (itemsInApiResponse.isNotEmpty()) {
+
+                        clickLambdaFunction= { Log.v("NIT3213","Item Clicked")}
 
                         val itemList = mutableListOf<String>()
                         itemsInApiResponse.map { entity ->
