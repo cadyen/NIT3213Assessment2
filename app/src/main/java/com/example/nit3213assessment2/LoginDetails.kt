@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object LoginCredentials {
+object LoginDetails {
     @Provides
     @Singleton
     @Named("Username")

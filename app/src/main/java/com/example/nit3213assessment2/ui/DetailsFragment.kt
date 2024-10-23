@@ -37,10 +37,9 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         // Initialize the navigation controller
         navController = Navigation.findNavController(view)
 
-        // Set up back button click listener
+        // Set up back button click listener1
         view.findViewById<ImageButton>(R.id.backButton)?.setOnClickListener(this)
 
-        // Retrieve the index of the selected item from the arguments
         val selectedItemIndex = arguments?.getInt("SelectedItemIndex")
 
         // Fetch all objects from the ViewModel
@@ -65,7 +64,6 @@ class DetailsFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    // Navigate back to the dashboard fragment when the back button is pressed
     override fun onClick(v: View?) {
         Log.v("NIT3213", "Back button pressed")
         navController?.navigate(R.id.action_detailsFragment_to_dashboardFragment)

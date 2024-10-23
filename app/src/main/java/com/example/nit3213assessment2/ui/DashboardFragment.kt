@@ -2,7 +2,6 @@ package com.example.nit3213assessment2.ui
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,11 +17,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
-    // @OptIn(DelicateCoroutinesApi::class)
-
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MyAdaptor
-    private lateinit var clicklambdafunction: () -> Unit
+    private lateinit var adaptor: MyAdaptor
+    private lateinit var clickLambdaFunction: () -> Unit
 
     private val viewModel: DashboardViewModel by viewModels()
 
@@ -30,7 +27,6 @@ class DashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
@@ -44,8 +40,6 @@ class DashboardFragment : Fragment() {
                 viewModel.entitiesState.collect { itemsInApiResponse ->
                     if (itemsInApiResponse.isNotEmpty()) {
 
-                        clicklambdafunction= { Log.v("NIT3213","Item Clicked")}
-
                         val itemList = mutableListOf<String>()
                         itemsInApiResponse.map { entity ->
                             itemList += (""""${entity.title}"""" + " by ${entity.author}.\n" +
@@ -53,9 +47,9 @@ class DashboardFragment : Fragment() {
                         }
 
                         recyclerView = view.findViewById(R.id.recyclerView)
-                        adapter = MyAdaptor(itemList,clicklambdafunction)
-                        recyclerView.adapter=adapter
-                        adapter.updateData(itemList)
+                        adaptor = MyAdaptor(itemList,clickLambdaFunction)
+                        recyclerView.adapter=adaptor
+                        adaptor.updateData(itemList)
                     }
                 }
             }
